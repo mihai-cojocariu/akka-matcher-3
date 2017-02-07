@@ -1,0 +1,14 @@
+package mihai.utils;
+
+/**
+ * Created by mcojocariu on 2/6/2017.
+ */
+public enum RequestType {
+    GET_TRADES,
+    GET_CCP_TRADES,
+    GET_UNMATCHED_TRADES,
+    GET_FULLY_MATCHED_TRADES,
+    GET_MATCHED_TRADES_WITHOUT_ECONOMICS,
+    GET_MATCHED_WITHIN_TOLERANCE_FOR_AMOUNT,
+    GET_MATCHED_OUTSIDE_OF_TOLERANCE_FOR_AMOUNT;
+}

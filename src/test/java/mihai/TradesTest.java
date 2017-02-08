@@ -38,7 +38,6 @@ import static org.junit.Assert.assertEquals;
 public class TradesTest {
     private static ActorSystem system;
     private LoggingAdapter log = Logging.getLogger(system, this);
-    private Class supervisorClass = SupervisorActor.class;
 
     @BeforeClass
     public static void setup() {
@@ -54,11 +53,8 @@ public class TradesTest {
     @After
     public void stopActors() {
         new JavaTestKit(system) {{
-            ActorSelection supervisor = system.actorSelection("/user/" + supervisorClass.getSimpleName());
+            ActorSelection supervisor = system.actorSelection("/user/" + Constants.SUPERVISOR_CLASS.getSimpleName());
             supervisor.tell(PoisonPill.getInstance(), null);
-
-            ActorSelection aggregator = system.actorSelection("/user/" + Constants.AGGREGATOR_CLASS.getSimpleName());
-            aggregator.tell(PoisonPill.getInstance(), null);
         }};
     }
 
@@ -375,8 +371,8 @@ public class TradesTest {
     }
 
     private TestActorRef getSupervisorActor() {
-        String name = supervisorClass.getSimpleName();
-        return TestActorRef.create(system, Props.create(supervisorClass), name);
+        String name = Constants.SUPERVISOR_CLASS.getSimpleName();
+        return TestActorRef.create(system, Props.create(Constants.SUPERVISOR_CLASS), name);
     }
 
     private void logUsedMemory() {

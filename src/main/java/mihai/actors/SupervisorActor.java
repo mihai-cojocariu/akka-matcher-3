@@ -49,7 +49,7 @@ public class SupervisorActor extends UntypedActor {
 
     private void performGetTrades(TradesRequest tradesRequest) {
         if (aggregatorActor == null) {
-            aggregatorActor = getContext().system().actorOf(Props.create(Constants.AGGREGATOR_CLASS), Constants.AGGREGATOR_CLASS.getSimpleName());
+            aggregatorActor = getContext().actorOf(Props.create(Constants.AGGREGATOR_CLASS), Constants.AGGREGATOR_CLASS.getSimpleName());
         }
         AggregatorMessage aggregatorMessage = new AggregatorMessage(tradesRequest.getRequestId(), nbOfChildren, getSender());
         aggregatorActor.tell(aggregatorMessage, getSelf());

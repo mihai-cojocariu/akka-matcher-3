@@ -77,7 +77,7 @@ public class TradeWorkerActor extends UntypedActor {
         }
 
         if (response != null) {
-            ActorSelection aggregator = getContext().actorSelection("/user/" + Constants.AGGREGATOR_CLASS.getSimpleName());
+            ActorSelection aggregator = getContext().actorSelection("/user/" + Constants.SUPERVISOR_CLASS.getSimpleName() + "/" + Constants.AGGREGATOR_CLASS.getSimpleName());
             aggregator.tell(response, getSelf());
         }
     }
